@@ -10,12 +10,12 @@ class Platform {
     this.moveSpeed = 2;
   }
 }
-//render platform woth colour based on its type
+//render platform with colour based on its type
 draw();
 {
   noStroke();
   if (this.type === "normal") {
-    fill(80, 180, 80);
+    fill(60, 180, 80);
   } else if (this.type === "bouncy") {
     fill(255, 180, 50);
   } else if (this.type === "moving") {
@@ -25,7 +25,7 @@ draw();
   }
   rect(this.x, this.y, this.width, this.height);
 }
-//update platform position:scroll down + horizobtal bounce for moving type
+//update platform position:scroll down + horizontal bounce for moving type
 update(scrollSpeed);
 {
   this.y += scrollSpeed;
@@ -35,5 +35,23 @@ update(scrollSpeed);
     if (this.x <= 0 || this.x + this.width >= width) {
       this.moveSpeed *= -1;
     }
+  }
+}
+//check if player lands on this platform
+checkCollision(player);
+{
+  const playerBottom = player.y + player.y + player.height / 2;
+  const platformTop = this.y;
+  if (
+    player.velocityY > 0 &&
+    playerBottom >= platformTop &&
+    playerBottom <= platformTop + this.height &&
+    player.x + player.width / 2 >= this.x &&
+    player.x - player.width / 2 <= this.x + this.width
+  ) {
+    return true;
+  }
+  {
+    return false;
   }
 }
