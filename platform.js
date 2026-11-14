@@ -25,3 +25,15 @@ draw();
   }
   rect(this.x, this.y, this.width, this.height);
 }
+//update platform position:scroll down + horizobtal bounce for moving type
+update(scrollSpeed);
+{
+  this.y += scrollSpeed;
+  if (this.type === "moving") {
+    this.x += this.moveSpeed;
+    //reverse direction if hitting canvas boundary
+    if (this.x <= 0 || this.x + this.width >= width) {
+      this.moveSpeed *= -1;
+    }
+  }
+}
