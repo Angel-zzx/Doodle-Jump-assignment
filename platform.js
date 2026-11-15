@@ -86,3 +86,23 @@ onLand(player);
   }
   //normal platform: nothing extra
 }
+/** 
+ * Draw platform based on its type
+ 
+ */
+draw();
+{
+  if (!this.active) return;
+  noStroke();
+
+  if (this.type === "normal") {
+    fill(80, 180, 80);
+  } else if (this.type === "moving") {
+    fill(70, 140, 210);
+  } else if (this.type === "fragile") {
+    fill(200, 130, 70);
+  } else if (this.type === "bouncy") {
+    fill(220, 90, 160);
+  }
+  rect(this.x, this.y, this.w, this.h, 4);
+}
