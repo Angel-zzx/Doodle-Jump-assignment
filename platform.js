@@ -1,13 +1,14 @@
 class Platform {
   //constructor: set position, size, type and broken status
-  constructor(x, y, w, h, type) {
+  constructor(x, y, w, h, type, moveSpeed = 2) {
     this.x = x;
     this.y = y;
     this.width = w;
     this.height = h;
     this.type = type; //"normal","bouncy","moving","fragile"
     this.broken = false; //only for fragile platforms
-    this.moveSpeed = 2;
+    this.moveSpeed = moveSpeed;
+    this.active = true;
   }
 }
 //render platform with colour based on its type
@@ -54,4 +55,34 @@ checkCollision(player);
   {
     return false;
   }
+}
+/**
+ * Update platform each frame
+ **/
+update();
+{
+  if (this.type === "moving") {
+    this.x += this.vx;
+    if (this.x <= 0 || this.x + this.width >= width) {
+      this.vx *= -1;
+    }
+  }
+  if (this.broken) {
+    this.active = false;
+  }
+}
+/**
+ * Trigger effect when player lands
+ * param {Player} player
+ */
+onLand(player);
+{
+  if (this.type === "bouncy") {
+    player.vy = -12;
+  } else if (this.type === "fragile") {
+    this.broken = true;
+  } else if (this.type === "moving") {
+    player.x += this.vx;
+  }
+  //normal platform: nothing extra
 }
