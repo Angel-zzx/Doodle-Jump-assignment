@@ -14,7 +14,7 @@ class Platform {
 //render platform with colour based on its type
 draw();
 {
-  noStroke();
+  noStroke()
   if (this.type === "normal") {
     fill(60, 180, 80);
   } else if (this.type === "bouncy") {
@@ -27,7 +27,7 @@ draw();
   rect(this.x, this.y, this.width, this.height);
 }
 //update platform position:scroll down + horizontal bounce for moving type
-update(scrollSpeed);
+update(scrollSpeed)
 {
   this.y += scrollSpeed;
   if (this.type === "moving") {
@@ -39,9 +39,9 @@ update(scrollSpeed);
   }
 }
 //check if player lands on this platform
-checkCollision(player);
+checkCollision(player) 
 {
-  const playerBottom = player.y + player.y + player.height / 2;
+  const playerBottom = player.y + player.height / 2;
   const platformTop = this.y;
   if (
     player.velocityY > 0 &&
@@ -50,16 +50,16 @@ checkCollision(player);
     player.x + player.width / 2 >= this.x &&
     player.x - player.width / 2 <= this.x + this.width
   ) {
-    return true;
+    return true
   }
-  {
-    return false;
-  }
+  
+    return false
+  
 }
 /**
  * Update platform each frame
  **/
-update();
+update() 
 {
   if (this.type === "moving") {
     this.x += this.vx;
@@ -74,8 +74,8 @@ update();
 /**
  * Trigger effect when player lands
  * param {Player} player
- */
-onLand(player);
+ **/
+onLand(player)
 {
   if (this.type === "bouncy") {
     player.vy = -12;
@@ -89,8 +89,8 @@ onLand(player);
 /** 
  * Draw platform based on its type
  
- */
-draw();
+ **/
+draw()
 {
   if (!this.active) return;
   noStroke();
