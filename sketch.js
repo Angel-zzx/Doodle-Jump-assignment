@@ -23,3 +23,24 @@ function setup() {
     platforms.push(new Platform(randX, randY, 80, 15, randType));
   }
 }
+
+function draw() {
+  // set background color
+  background(135, 206, 235);
+}
+
+// update player movement
+player.updateHorizaotal();
+player.updateVertical();
+
+// handle landing collision logic between player and all platforms
+player.resolvePlatformLandthings(platforms);
+
+//draw the player
+player.draw();
+
+// loop through all platforms to update and render
+for (let p of platforms) {
+  p.update();
+  p.draw();
+}
