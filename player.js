@@ -37,7 +37,7 @@ window.Player = class Player {
     for (const platform of platformList) {
       if (this.isColliding(platform)) {
         this.y = platform.y - this.height / 2;
-        platform.onLanded();
+        platform.onLand(this);
         this.jump();
         break;
       }

@@ -65,6 +65,9 @@ class Platform {
    * Trigger effect when player lands
    * @param {Player} player
    */
+  canLand() {
+    return this.active;
+  }
   onLand(player) {
     if (this.type === "bouncy") {
       player.velocityY = -12;
