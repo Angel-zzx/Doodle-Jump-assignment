@@ -23,8 +23,8 @@ class Platform {
    * Update platform each frame
    */
   update() {
-    if (!this.active) return;
     this.y += scrollSpeed;
+    if (!this.active) return;
 
     if (this.type === "moving") {
       this.x += this.moveSpeed;
