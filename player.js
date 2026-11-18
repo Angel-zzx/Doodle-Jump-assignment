@@ -9,6 +9,7 @@ window.Player = class Player {
     this.speed = 5;
     this.gravity = 0.45;
     this.jumpForce = -11.8;
+    this.canJump = false; // Jump permission flag
   }
 
   updateHorizontal() {
@@ -38,9 +39,12 @@ window.Player = class Player {
       if (this.isColliding(platform)) {
         this.y = platform.y - this.height / 2;
         platform.onLand(this);
-        this.jump();
-        break;
+        this.canjump = true; // Ensble jump when landing on platform
       }
+    }
+    // Disable jump when player is falling( in air)
+    if (this.velcityY > 0) {
+      this.canJump = false;
     }
   }
 
